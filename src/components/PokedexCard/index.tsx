@@ -1,11 +1,18 @@
 import styles from "./style.module.css";
 import { PokemonInterface } from "../../types";
 import { padWithZeros } from "../../helpers/padWithZero";
+import { useNavigate } from "react-router-dom";
 
 function PokedexCard({ pokemonDetail }: { pokemonDetail: PokemonInterface }) {
+  const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/pokemon/${pokemonDetail.id}`);
+  };
+
   return (
     <>
-      <div className={styles.pokedexCard}>
+      <div className={styles.pokedexCard} onClick={handleCardClick}>
         <img
           src={`pokemonImages/images/${padWithZeros(pokemonDetail.id, 3)}.png`}
           alt={`Pokemon ${pokemonDetail.name.english}`}

@@ -1,14 +1,7 @@
-.selectContainer { 
-  display: flex;
-  flex-direction: column;
-  width: 100%; 
-  align-items: baseline;
-}
-
-.customSelect { 
+ .selectPokedex { 
   padding: 10px;
   font-size: 16px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 4px;
   outline: none;
   width: 100%;
@@ -16,7 +9,7 @@
   background-color: white;
 }
 
-.customSelect::after { 
+.selectPokedex::after { 
   position: absolute;
   top: 50%;
   right: 10px;
