@@ -1,0 +1,22 @@
+.pokedexCard {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 5px;
+  border: 1px solid #ccc;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+  cursor: pointer; 
+  border-radius: 10%;
+}
+
+.pokedexListItems:hover {
+  opacity: 0.9;
+  border: 2px solid gray;
+}
+
+.pokedexTypes{
+  display: flex;
+  align-items: baseline;
+}
