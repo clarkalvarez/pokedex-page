@@ -7,16 +7,17 @@
   text-align: center;
   padding: 20px;
   box-sizing: border-box;
-  cursor: pointer; 
+  cursor: pointer;
   border-radius: 10%;
+  max-width: 200px;
 }
 
-.pokedexListItems:hover {
+.pokedexCard:hover {
   opacity: 0.9;
   border: 2px solid gray;
 }
 
-.pokedexTypes{
+.pokedexTypes {
   display: flex;
-  align-items: baseline;
+  text-align: left;
 }

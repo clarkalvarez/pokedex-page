@@ -3,6 +3,7 @@ import { Navigate, RouteObject, useRoutes } from "react-router-dom";
 // app
 import App from "./App";
 import PokedexPage from "./pages/PokedexPage";
+import PokemonDetailPage from "./pages/PokemonDetailPage";
 
 const routes: RouteObject[] = [
   {
@@ -13,6 +14,10 @@ const routes: RouteObject[] = [
       {
         element: <PokedexPage title="Pokedex Page" />,
         path: "/",
+      },
+      {
+        element: <PokemonDetailPage />,
+        path: "/pokemon/:id",
       },
     ],
   },

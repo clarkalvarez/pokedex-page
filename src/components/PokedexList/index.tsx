@@ -6,7 +6,7 @@ function PokedexList({ filteredData }: { filteredData: PokemonInterface[] }) {
   return (
     <div className={styles.pokedexListContainer}>
       {filteredData.map((pokemon: PokemonInterface) => (
-        <PokedexCard pokemonDetail={pokemon}/>
+        <PokedexCard pokemonDetail={pokemon} />
       ))}
       {filteredData.length === 0 && (
         <>
