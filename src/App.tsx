@@ -6,9 +6,7 @@ import { Outlet } from "react-router-dom";
 function App() {
   return (
     <div className="App">
-      <main className="left-0 right-0 bg-white">
-        {/* Temporary remove the checking of API status.
-          {!!apiStatus?.apiReady && <Outlet />} */}
+      <main className="left-0 right-0 bg-white"> 
         <Outlet />
       </main>
     </div>

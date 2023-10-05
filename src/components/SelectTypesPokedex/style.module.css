@@ -1,0 +1,25 @@
+.selectContainer { 
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+  align-items: baseline;
+}
+
+.customSelect { 
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+  background-color: white;
+}
+
+.customSelect::after { 
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
