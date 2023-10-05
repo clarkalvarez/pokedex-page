@@ -1,22 +1,56 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import styles from "./style.module.css";
-import pokemonData from "../../pokemonList/pokedex.json";
-import pokemonTypesData from "../../pokemonList/types.json";
-import { PokemonInterface } from "../../types";
+import styles from "./style.module.css"; 
+ import { Languages, PokemonInterface } from "../../types";
 import SearchPokedex from "../../components/SearchPokedex";
 import PokedexList from "../../components/PokedexList";
 import SelectTypesPokedex from "../../components/SelectTypesPokedex";
  
-
 function PokedexPage({ title }: { title: string }) {
-  const pokemonTypes: string[] = pokemonTypesData.map((data) => data.english);
+  const [pokedexData, setPokedexData] = useState([]);
+  const [pokedexTypesData, setPokedexTypesData] = useState([]);
+
+  useEffect(() => {
+    const readPokedexUrl = "http://localhost:3100/pokedex";
+    const readPokedexTypesUrl = "http://localhost:3100/pokedexTypes";
+
+    fetch(readPokedexUrl)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPokedexData(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+
+      fetch(readPokedexTypesUrl)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          setPokedexTypesData(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+        });
+  }, []);
+
+
+  const pokemonTypes: string[] = pokedexTypesData.map((data: Languages) => data.english);
   const options = ["All", ...pokemonTypes];
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedType, setSelectedType] = useState("All");
 
-  const filteredData = pokemonData.filter((pokemon: PokemonInterface) => {
+  const filteredData = pokedexData.filter((pokemon: PokemonInterface) => {
     const includesSearch = pokemon.name.english
       .toLowerCase()
       .includes(searchQuery.toLowerCase());
