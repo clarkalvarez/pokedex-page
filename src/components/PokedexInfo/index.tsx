@@ -3,9 +3,13 @@ import { PokemonInterface } from "../../types";
 import { padWithZeros } from "../../helpers/padWithZero";
 import { deletePokemon } from "../../helpers/deletePokemon";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { updatePokemon } from "../../helpers/updatePokemon";
 
 function PokedexInfo({ pokemonDetail }: { pokemonDetail: PokemonInterface }) {
   const navigate = useNavigate();
+  const [isEdit, setIsEdit] = useState(true);
+  const [englishName, setEnglishName] = useState(pokemonDetail.name.english);
   const handleDeletePokemonButton = async () => {
     const result = await deletePokemon(pokemonDetail.id);
     if (result) {
@@ -15,15 +19,75 @@ function PokedexInfo({ pokemonDetail }: { pokemonDetail: PokemonInterface }) {
       alert(`Deleted not successful. Try again.`);
     }
   };
+
+  const handleEditPokemonButton = async () => {
+    setIsEdit(true);
+  };
+
+  const handleEditSavePokemonButton = async () => {
+    const pokemonDetails = {
+      id: pokemonDetail.id,
+      selectedTypeOne: pokemonDetail.type[0],
+      selectedTypeTwo: pokemonDetail.type[1],
+      englishName: englishName,
+      japaneseName: pokemonDetail.name.japanese,
+      chineseName: pokemonDetail.name.japanese,
+      frenchName: pokemonDetail.name.japanese,
+      hp: Number(pokemonDetail.base.HP),
+      defense: Number(pokemonDetail.base.Defense),
+      attack: Number(pokemonDetail.base.Attack),
+      spAttack: Number(
+        pokemonDetail.base.SpAttack || pokemonDetail.base["Sp. Attack"]
+      ),
+      spDefense: Number(
+        pokemonDetail.base.SpDefense || pokemonDetail.base["Sp. Defense"]
+      ),
+      speed: Number(pokemonDetail.base.Speed),
+    };
+
+    const saveResult = await updatePokemon(pokemonDetails);
+
+    if (saveResult) {
+      alert("Updated Successfully");
+      setIsEdit(false);
+    } else {
+      alert("Error saving this pokemon. Try again.");
+    }
+  };
+
+  function handleEnglishNameChange(event: React.ChangeEvent<HTMLInputElement>) {
+    setEnglishName(event.target.value);
+  }
+
   return (
     <>
       <div className={styles.container}>
-        <div className="container">
+        <div className="container mb-2">
           <div className="row items-center">
             <div className="col">
-              <button type="button" className="btn btn-primary">
-                Edit
-              </button>
+              {isEdit && (
+                <>
+                  <button
+                    onClick={handleEditSavePokemonButton}
+                    type="button"
+                    className="btn btn-success"
+                  >
+                    Save
+                  </button>
+                </>
+              )}
+
+              {!isEdit && (
+                <>
+                  <button
+                    onClick={handleEditPokemonButton}
+                    type="button"
+                    className="btn btn-primary"
+                  >
+                    Edit
+                  </button>
+                </>
+              )}
             </div>
             <div className="col">
               <label className={styles.pokemonId}>
@@ -41,7 +105,23 @@ function PokedexInfo({ pokemonDetail }: { pokemonDetail: PokemonInterface }) {
             </div>
           </div>
         </div>
-        <h2 className={styles.pokemonName}>{pokemonDetail.name.english}</h2>
+        {isEdit && (
+          <>
+            <input
+              className="form-control w-25 mx-auto text-center"
+              placeholder="English Name"
+              value={englishName}
+              onChange={handleEnglishNameChange}
+            />
+          </>
+        )}
+
+        {!isEdit && (
+          <>
+            <h2 className={styles.pokemonName}>{englishName}</h2>
+          </>
+        )}
+
         <img
           className={styles.pokemonImg}
           src={`http://localhost:3100/image/${padWithZeros(

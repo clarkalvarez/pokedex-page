@@ -34,6 +34,10 @@ export interface PokemonSaveInterface {
   speed: number;
 }
 
+export interface PokemonUpdateInterface extends PokemonSaveInterface {
+  id: number;
+}
+
 export interface SelectComponentProps {
   text: string;
   disabled?: boolean;
