@@ -10,8 +10,8 @@
 }
  
 .pokemonId {
-  font-size: 14px;
-  color: #888;
+  font-size: 18px;
+  color: gray;
 }
 
 .pokemonName {
@@ -27,16 +27,7 @@
   border-radius: 5px;
 }
 
- /* img {
-   max-width: 100%;
-   height: auto;
- }
 
- @media (max-width: 768px) {
-   img {
-     max-width: 80%;
-   }
- } */
  
 .listContainer {
   list-style: none;

@@ -3,17 +3,3 @@
   font-family: Arial;
   text-align: center;
 }
-
-.pokemonFilters {
-  display: flex; 
-  padding: 20px;
-}
-
-.pokemonFilterContainer{
-  display: flex;
-  flex-direction: column;
-  align-items: baseline; 
-  margin: 5px;   
-  width: 100%;
-}
- 

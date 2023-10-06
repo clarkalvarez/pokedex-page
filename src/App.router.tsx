@@ -4,6 +4,7 @@ import { Navigate, RouteObject, useRoutes } from "react-router-dom";
 import App from "./App";
 import PokedexPage from "./pages/PokedexPage";
 import PokemonDetailPage from "./pages/PokemonDetailPage";
+import PokemonAddPage from "./pages/PokemonAddPage";
 
 const routes: RouteObject[] = [
   {
@@ -18,6 +19,10 @@ const routes: RouteObject[] = [
       {
         element: <PokemonDetailPage />,
         path: "/pokemon/:id",
+      },
+      {
+        element: <PokemonAddPage />,
+        path: "/add-pokemon",
       },
     ],
   },

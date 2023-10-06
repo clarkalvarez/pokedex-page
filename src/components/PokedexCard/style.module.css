@@ -21,3 +21,9 @@
   display: flex;
   text-align: left;
 }
+
+
+.pokemonImage {
+  width: 150px;
+  height: 150px;
+}

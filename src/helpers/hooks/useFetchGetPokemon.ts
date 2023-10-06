@@ -23,7 +23,7 @@ export function useFetchGetPokemon(id: string | undefined) {
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [id, data, navigate]);
+  }, [id]);
 
   return data;
 }

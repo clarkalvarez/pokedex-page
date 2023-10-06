@@ -14,7 +14,11 @@ function PokedexCard({ pokemonDetail }: { pokemonDetail: PokemonInterface }) {
     <>
       <div className={styles.pokedexCard} onClick={handleCardClick}>
         <img
-          src={`pokemonImages/images/${padWithZeros(pokemonDetail.id, 3)}.png`}
+          className={styles.pokemonImage}
+          src={`http://localhost:3100/image/${padWithZeros(
+            pokemonDetail.id,
+            3
+          )}.png`}
           alt={`Pokemon ${pokemonDetail.name.english}`}
         />
         <label>

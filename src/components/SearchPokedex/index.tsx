@@ -1,5 +1,4 @@
 import React from "react";
-import styles from "./style.module.css";
 
 interface SearchInputProps {
   value: string;
@@ -9,13 +8,15 @@ interface SearchInputProps {
 function SearchPokedex({ value, onChange }: SearchInputProps) {
   return (
     <>
-      <h4>Search Pokemon</h4>
-      <input
-        className={styles.pokemonSearch}
-        type="text"
-        value={value}
-        onChange={onChange}
-      />
+      <div className="form-group">
+        <label>Search Pokemon</label>
+        <input
+          className="form-control"
+          type="text"
+          value={value}
+          onChange={onChange}
+        />
+      </div>
     </>
   );
 }
