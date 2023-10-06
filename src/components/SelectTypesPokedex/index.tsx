@@ -7,16 +7,16 @@ const SelectTypesPokedex: React.FC<SelectComponentProps> = ({
   onChange,
 }) => {
   return (
-    <div className={styles.selectContainer}>
+    <>
       <h4>Filter By Types</h4>
-      <select className={styles.customSelect} onChange={onChange}>
+      <select className={styles.selectPokedex} onChange={onChange}>
         {options.map((option, index) => (
           <option key={index} value={option}>
             {option}
           </option>
         ))}
       </select>
-    </div>
+    </>
   );
 };
 
