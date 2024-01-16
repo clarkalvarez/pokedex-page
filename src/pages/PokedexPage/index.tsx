@@ -7,11 +7,15 @@ import SelectTypesPokedex from "../../components/SelectTypesPokedex";
 import { useFetchGetAllPokedex } from "../../helpers/hooks/useFetchGetAllPokedex";
 import { useFetchGetAllPokemonTypes } from "../../helpers/hooks/useFetchGetAllPokemonTypes";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../redux/hooks";
+import { getPokedexSelector } from "../../redux/reducers/globalSlice";
 
 function PokedexPage({ title }: { title: string }) {
   const navigate = useNavigate();
 
-  const pokedexData = useFetchGetAllPokedex();
+  useFetchGetAllPokedex();
+  const pokedexData = useAppSelector(getPokedexSelector);
+
   const pokedexTypesData = useFetchGetAllPokemonTypes();
 
   const pokemonTypes: string[] = pokedexTypesData.map(

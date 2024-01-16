@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { PokemonInterface } from "../../types";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../redux/hooks";
+import { setPokedexAction } from "../../redux/reducers/globalSlice";
 
 export function useFetchGetAllPokedex() {
   const url = "http://localhost:3100/api/pokemon/";
 
-  const [data, setData] = useState<PokemonInterface[]>([]);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetch(url)
@@ -15,12 +16,10 @@ export function useFetchGetAllPokedex() {
         return response.json();
       })
       .then((data) => {
-        setData(data);
+        dispatch(setPokedexAction(data));
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
       });
-  }, [url]);
-
-  return data;
+  }, [dispatch]);
 }
